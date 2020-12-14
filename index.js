@@ -11,6 +11,9 @@ mongoose.connect('mongodb://localhost/familyTree')
 const db = mongoose.connection
 console.log(db)
 
+// Import models
+const User = require('./models/user')
+
 db.once('open', () => {
     // Printing to see what host and port MongoDB is on
     console.log(`Connected to MongoDB on ${db.host}: ${db.port}`)
@@ -23,6 +26,15 @@ db.on('error', (err) => {
 
 app.get('/', (req, res) => {
     res.send('Mongoose')
+})
+
+app.get('/user', (req, res) => {
+    const rome = new User({
+        email: 'rome@ga.co',
+        name: 'Rome',
+        age: 33,
+        website: 'www.ga.co'
+    })
 })
 
 const PORT = process.env.PORT || 3000
