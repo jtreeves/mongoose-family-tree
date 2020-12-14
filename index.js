@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/user', (req, res) => {
-    const rome = new User({
+    User.create({
         email: 'rome@ga.co',
         name: 'Rome',
         age: 33,
